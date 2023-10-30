@@ -1,19 +1,22 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import LoginScreen from '../screens/login/LoginScreen';
-import Dashboard from '../screens/dashboard/Dashboard';
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import LoginScreenTwo from "../screens/login/LoginScreenTwo";
+import LoginScreenOne from "../screens/login/LoginScreenOne";
+import Dashboard from "../screens/dashboard/Dashboard";
 
 const RootNavigation = () => {
   const MyStack = createStackNavigator();
   return (
     <NavigationContainer>
       <MyStack.Navigator
-        initialRouteName="Login"
+        initialRouteName="LoginOne"
         screenOptions={{
           headerShown: false,
-        }}>
-        <MyStack.Screen name="Login" component={LoginScreen} />
+        }}
+      >
+        <MyStack.Screen name="LoginOne" component={LoginScreenOne} />
+        <MyStack.Screen name="LoginTwo" component={LoginScreenTwo} />
         <MyStack.Screen name="Dashboard" component={Dashboard} />
       </MyStack.Navigator>
     </NavigationContainer>

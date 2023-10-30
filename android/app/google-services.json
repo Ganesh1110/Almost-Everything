@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "635074856859",
+    "project_id": "almost-everything-659e6",
+    "storage_bucket": "almost-everything-659e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635074856859:android:3a5ccbe02c334fba28033e",
+        "android_client_info": {
+          "package_name": "com.almost_everything"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635074856859-5qr6vsagjtc2sj0qs0o9cua60tt9o3nd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.almost_everything",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "635074856859-g71dk2h90729aqpv9oog48a8uqgluo1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd-DZAs4je_2b7KW-OU8sOCHO0ksUbVCA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635074856859-g71dk2h90729aqpv9oog48a8uqgluo1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
