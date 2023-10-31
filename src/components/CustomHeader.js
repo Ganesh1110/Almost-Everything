@@ -9,11 +9,12 @@ const CustomHeader = ({
   onLeftIconPress,
   rightIconName,
   onRightIconPress,
+  headerBg,
 }) => {
   return (
     <View
       style={{
-        backgroundColor: Colors.White,
+        backgroundColor: headerBg ? headerBg : Colors.White,
         padding: 15,
         flexDirection: "row",
       }}

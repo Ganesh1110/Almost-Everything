@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  useColorScheme,
 } from "react-native";
 import { useTranslation } from "react-i18next";
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin";

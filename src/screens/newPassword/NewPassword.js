@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from "react";
 import {
+  View,
   Text,
   SafeAreaView,
-  View,
   Image,
   TextInput,
   TouchableOpacity,
 } from "react-native";
 import CustomHeader from "../../components/CustomHeader";
 import { Colors, DIM, Icons } from "../../utilities/Constants";
-import { GlobalStyles, isDarkMode } from "../../utilities/GlobalStyles";
 import CustomButton from "../../components/CustomButton";
-const LoginScreenTwo = ({ navigation }) => {
+import { GlobalStyles } from "../../utilities/GlobalStyles";
+
+const NewPassword = ({ navigation }) => {
   const [userCredential, setUserCredential] = useState({
-    email: "",
-    passWord: "",
+    newPassword: "",
+    confirmPassword: "",
   });
   const [inputFieldColor, setInputFieldColor] = useState({
-    email: Colors.Iceberg,
-    passWord: Colors.Iceberg,
+    newPassword: Colors.Iceberg,
+    confirmPassword: Colors.Iceberg,
   });
   const [isInvalidFlag, setIsInvalidFlag] = useState({
-    email: false,
-    passWord: false,
+    newPassword: false,
+    confirmPassword: false,
   });
   const [buttonLoader, setButtonLoader] = useState(false);
   const [showPass, setShowPass] = useState(false);
@@ -33,42 +34,38 @@ const LoginScreenTwo = ({ navigation }) => {
 
   const getInitialState = () => {
     setUserCredential({
-      email: "1",
-      passWord: "1  ",
+      newPassword: "",
+      confirmPassword: "",
     });
     setInputFieldColor({
-      email: Colors.Iceberg,
-      passWord: Colors.Iceberg,
+      newPassword: Colors.Iceberg,
+      confirmPassword: Colors.Iceberg,
     });
     setIsInvalidFlag({
-      email: false,
-      passWord: false,
+      newPassword: false,
+      confirmPassword: false,
     });
     setButtonLoader(false);
     setShowPass(false);
   };
 
-  const leftNav = () => {
-    navigation.navigate("LoginOne");
-  };
-
   const onBlur = () => {
     setInputFieldColor({
-      email: Colors.Iceberg,
-      passWord: Colors.Iceberg,
+      newPassword: Colors.Iceberg,
+      confirmPassword: Colors.Iceberg,
     });
   };
 
   const onFocus = (value) => {
-    if (value == "Email") {
+    if (value == "new pass") {
       setInputFieldColor({
-        email: Colors.CuriousBlue,
-        passWord: Colors.Iceberg,
+        newPassword: Colors.CuriousBlue,
+        confirmPassword: Colors.Iceberg,
       });
-    } else if (value == "password") {
+    } else if (value == "confirm pass") {
       setInputFieldColor({
-        email: Colors.Iceberg,
-        passWord: Colors.CuriousBlue,
+        newPassword: Colors.Iceberg,
+        confirmPassword: Colors.CuriousBlue,
       });
     }
   };
@@ -79,14 +76,14 @@ const LoginScreenTwo = ({ navigation }) => {
     const isValidColor = { ...inputFieldColor };
     const inValidFlag = { ...isInvalidFlag };
 
-    if (field.email.trim() == "") {
-      isValidColor.email = Colors.DustyRed;
-      inValidFlag.email = true;
+    if (field.newPassword.trim() == "") {
+      isValidColor.newPassword = Colors.DustyRed;
+      inValidFlag.newPassword = true;
       isValid = false;
     }
-    if (field.passWord.trim() == "") {
-      isValidColor.passWord = Colors.DustyRed;
-      inValidFlag.passWord = true;
+    if (field.confirmPassword.trim() == "") {
+      isValidColor.confirmPassword = Colors.DustyRed;
+      inValidFlag.confirmPassword = true;
       isValid = false;
     }
     setInputFieldColor(isValidColor);
@@ -96,94 +93,76 @@ const LoginScreenTwo = ({ navigation }) => {
 
   const submitFunction = () => {
     if (validateFields()) {
-      navigation.navigate("Home");
+      navigation.navigate("LoginTwo");
     }
   };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.White }}>
       <CustomHeader
-        heading={"Login"}
-        leftIconName={Icons.leftArrow}
-        onLeftIconPress={leftNav}
+        heading={"Create New Password"}
         headerBg={Colors.DustyRed_Op}
       />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
-          <Image
-            source={Icons.listen}
-            style={{
-              height: DIM.deviceHeight * 0.25,
-              width: DIM.deviceWidth * 0.55,
-            }}
-          />
-        </View>
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: DIM.deviceHeight * 0.035,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: Colors.ButteryWhite,
+            height: 220,
+            width: 220,
+            borderRadius: 150,
+            opacity: 0.7,
+          }}
+        />
+        <Image
+          source={Icons.ResetPass}
+          style={{
+            width: DIM.deviceWidth * 0.3,
+            height: DIM.deviceHeight * 0.23,
+            position: "absolute",
+            resizeMode: "contain",
+          }}
+        />
       </View>
-      <View style={GlobalStyles.marginView}>
-        <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: DIM.deviceHeight * 0.03,
+        }}
+      >
+        <>
           <Text
             style={{
-              color: Colors.Charcoal,
-              fontSize: DIM.deviceFont * 14,
-              fontWeight: "700",
-              lineHeight: DIM.deviceFont * 21,
+              fontSize: DIM.deviceFont * 17,
+              color: Colors.CarbonGrey,
+              fontWeight: "500",
             }}
           >
-            Email{" "}
-            <Text
-              style={{
-                color: Colors.DustyRed,
-              }}
-            >
-              *
-            </Text>
+            Your New Password Must Be Different
           </Text>
-          <View
+          <Text
             style={{
-              borderWidth: DIM.deviceWidth * 0.003,
-              marginTop: DIM.deviceHeight * 0.01,
-              borderRadius: DIM.deviceWidth * 0.02,
-              borderColor: inputFieldColor.email,
+              fontSize: DIM.deviceFont * 17,
+              color: Colors.CarbonGrey,
+              fontWeight: "500",
             }}
           >
-            <TextInput
-              onBlur={() => onBlur("Email")}
-              onFocus={() => onFocus("Email")}
-              style={{
-                height: 46,
-                fontSize: DIM.deviceFont * 16,
-                borderRadius: DIM.deviceWidth * 0.02,
-                fontWeight: "400",
-                padding: 10,
-                color: Colors.Charcoal,
-                borderColor: inputFieldColor.email,
-              }}
-              placeholder={"Enter Your Email"}
-              value={userCredential.email}
-              onChangeText={(text) => {
-                setUserCredential({
-                  ...userCredential,
-                  email: text,
-                });
-                setIsInvalidFlag({ ...isInvalidFlag, email: false }); // Clear the validation flag
-              }}
-              keyboardType="ascii-capable"
-            />
-          </View>
-          {isInvalidFlag.email && (
-            <Text
-              style={{
-                fontSize: DIM.deviceFont * 14,
-                fontWeight: "700",
-                lineHeight: 21,
-                color: Colors.DustyRed,
-                marginLeft: DIM.deviceWidth * 0.01,
-              }}
-            >
-              Enter your Email
-            </Text>
-          )}
-        </View>
+            from Previously Used Password.
+          </Text>
+        </>
+      </View>
+      <View
+        style={{
+          marginLeft: DIM.deviceWidth * 0.02,
+          marginRight: DIM.deviceWidth * 0.02,
+        }}
+      >
         <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
           <Text
             style={{
@@ -193,7 +172,7 @@ const LoginScreenTwo = ({ navigation }) => {
               lineHeight: DIM.deviceFont * 21,
             }}
           >
-            Password{" "}
+            New Password{" "}
             <Text
               style={{
                 color: Colors.DustyRed,
@@ -208,12 +187,12 @@ const LoginScreenTwo = ({ navigation }) => {
               borderWidth: DIM.deviceWidth * 0.003,
               marginTop: DIM.deviceHeight * 0.01,
               borderRadius: DIM.deviceWidth * 0.02,
-              borderColor: inputFieldColor.passWord,
+              borderColor: inputFieldColor.newPassword,
             }}
           >
             <TextInput
-              onBlur={() => onBlur("password")}
-              onFocus={() => onFocus("password")}
+              onBlur={() => onBlur()}
+              onFocus={() => onFocus("new pass")}
               style={{
                 height: 46,
                 fontSize: DIM.deviceFont * 16,
@@ -222,16 +201,16 @@ const LoginScreenTwo = ({ navigation }) => {
                 padding: 10,
                 width: "85%",
                 color: Colors.Charcoal,
-                borderColor: inputFieldColor.passWord,
+                borderColor: inputFieldColor.newPassword,
               }}
-              placeholder={"Enter Your PassWord"}
-              value={userCredential.passWord}
+              placeholder={"Enter Your New PassWord"}
+              value={userCredential.newPassword}
               onChangeText={(text) => {
                 setUserCredential({
                   ...userCredential,
-                  passWord: text,
+                  newPassword: text,
                 });
-                setIsInvalidFlag({ ...isInvalidFlag, passWord: false }); // Clear the validation flag
+                setIsInvalidFlag({ ...isInvalidFlag, newPassword: false }); // Clear the validation flag
               }}
               keyboardType="ascii-capable"
               secureTextEntry={!showPass ? true : false}
@@ -254,7 +233,7 @@ const LoginScreenTwo = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           </View>
-          {isInvalidFlag.passWord && (
+          {isInvalidFlag.newPassword && (
             <Text
               style={{
                 fontSize: DIM.deviceFont * 14,
@@ -263,35 +242,103 @@ const LoginScreenTwo = ({ navigation }) => {
                 color: Colors.DustyRed,
               }}
             >
-              Enter your PassWord
+              Enter your New PassWord
             </Text>
           )}
+        </View>
+        <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
           <Text
             style={{
-              color: Colors.Mist,
-              fontWeight: "500",
-              marginTop: DIM.deviceHeight * 0.01,
+              color: Colors.Charcoal,
               fontSize: DIM.deviceFont * 14,
-              marginLeft: DIM.deviceWidth * 0.012,
-            }}
-            onPress={() => {
-              navigation.navigate("Forgot Password");
+              fontWeight: "700",
+              lineHeight: DIM.deviceFont * 21,
             }}
           >
-            Forgot Password?
+            Confirm Password{" "}
+            <Text
+              style={{
+                color: Colors.DustyRed,
+              }}
+            >
+              *
+            </Text>
           </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              borderWidth: DIM.deviceWidth * 0.003,
+              marginTop: DIM.deviceHeight * 0.01,
+              borderRadius: DIM.deviceWidth * 0.02,
+              borderColor: inputFieldColor.confirmPassword,
+            }}
+          >
+            <TextInput
+              onBlur={() => onBlur("confirm pass")}
+              onFocus={() => onFocus("confirm pass")}
+              style={{
+                height: 46,
+                fontSize: DIM.deviceFont * 16,
+                borderRadius: DIM.deviceWidth * 0.02,
+                fontWeight: "400",
+                padding: 10,
+                width: "85%",
+                color: Colors.Charcoal,
+                borderColor: inputFieldColor.confirmPassword,
+              }}
+              placeholder={"Enter Your Confirm PassWord"}
+              value={userCredential.confirmPassword}
+              onChangeText={(text) => {
+                setUserCredential({
+                  ...userCredential,
+                  confirmPassword: text,
+                });
+                setIsInvalidFlag({ ...isInvalidFlag, confirmPassword: false }); // Clear the validation flag
+              }}
+              keyboardType="ascii-capable"
+              secureTextEntry={!showPass ? true : false}
+            />
+            <View style={{ marginLeft: DIM.deviceWidth * 0.025 }}>
+              <TouchableOpacity
+                style={{
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: 10,
+                }}
+                onPress={() => {
+                  setShowPass(!showPass);
+                }}
+              >
+                <Image
+                  style={GlobalStyles.iconSize}
+                  source={showPass ? Icons.showEye : Icons.hideEye}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          {isInvalidFlag.confirmPassword && (
+            <Text
+              style={{
+                fontSize: DIM.deviceFont * 14,
+                fontWeight: "700",
+                lineHeight: 21,
+                color: Colors.DustyRed,
+              }}
+            >
+              Enter your confirm PassWord
+            </Text>
+          )}
         </View>
         <TouchableOpacity
-          style={{ marginTop: DIM.deviceHeight * 0.05 }}
           onPress={() => {
             submitFunction();
           }}
+          style={{ marginTop: DIM.deviceHeight * 0.02 }}
         >
           <CustomButton
-            Btn_Title={"Login"}
+            Btn_Title={"Save"}
             TextColor={Colors.White}
             backgroundColor={Colors.SnakeGreen}
-            buttonLoader={buttonLoader}
           />
         </TouchableOpacity>
       </View>
@@ -299,4 +346,4 @@ const LoginScreenTwo = ({ navigation }) => {
   );
 };
 
-export default LoginScreenTwo;
+export default NewPassword;

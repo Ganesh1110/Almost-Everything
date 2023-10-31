@@ -1,15 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, SafeAreaView } from "react-native";
 import { useTranslation } from "react-i18next";
 import { GlobalStyles } from "../../utilities/GlobalStyles";
+import CustomHeader from "../../components/CustomHeader";
+import { Colors, Icons } from "../../utilities/Constants";
 
 const Dashboard = ({ navigation }) => {
   const { t } = useTranslation();
+
+  const openDrawerNavigation = () => {
+    navigation.openDrawer();
+  };
+
   return (
-    <View style={GlobalStyles.container}>
+    <SafeAreaView style={GlobalStyles.container}>
+      <CustomHeader
+        heading={"Dashboard"}
+        leftIconName={Icons.Menu}
+        onLeftIconPress={openDrawerNavigation}
+        headerBg={Colors.DustyRed_Op}
+      />
       <View
         style={{
-          flex: 1,
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -22,7 +34,7 @@ const Dashboard = ({ navigation }) => {
           {t("change-Language")}
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

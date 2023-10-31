@@ -1,9 +1,9 @@
 import { Dimensions, Platform } from "react-native";
 
 const DIM = {
-  deviceWidth: Math.round(Dimensions.get("screen").width),
-  deviceHeight: Math.round(Dimensions.get("screen").height),
-  deviceFont: Math.round(Dimensions.get("screen").fontScale),
+  deviceWidth: Math.round(Dimensions.get("window").width),
+  deviceHeight: Math.round(Dimensions.get("window").height),
+  deviceFont: Math.round(Dimensions.get("window").fontScale),
 };
 
 const iconWidth =
@@ -50,6 +50,7 @@ const Colors = {
   IronsideGrey: "#6C6C6C",
   CoralBlue: "#99D9F5",
   DarkGrey: "#363A36",
+  ButteryWhite: "#FFFBEB",
 };
 
 const Gif = {};
@@ -60,6 +61,17 @@ const Icons = {
   leftArrow: require("../assets/Icons/left-chevron.png"),
   showEye: require("../assets/Icons/eye_show.png"),
   hideEye: require("../assets/Icons/eye_hide.png"),
+  forgot: require("../assets/Icons/forgot.png"),
+  openEmail: require("../assets/Icons/open-email.png"),
+  Menu: require("../assets/Icons/menu.png"),
+  ResetPass: require("../assets/Icons/ResetPass.png"),
+  home: require("../assets/Icons/home.png"),
+  person: require("../assets/Icons/person.png"),
+  settings: require("../assets/Icons/settings.png"),
 };
 
-export { DIM, Colors, Gif, Icons, iconWidth, iconHeight };
+const Images = {
+  drawerBg: require("../assets/Images/Drawer-Bg.png"),
+};
+
+export { DIM, Colors, Gif, Icons, Images, iconWidth, iconHeight };

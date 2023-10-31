@@ -1,5 +1,13 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Appearance } from "react-native";
 import { Colors, DIM, iconHeight, iconWidth } from "./Constants";
+
+let colorScheme = Appearance.getColorScheme();
+const isDarkMode = () => {
+  let color = "";
+  if (colorScheme) {
+    console.warn(colorScheme);
+  }
+};
 
 const GlobalStyles = StyleSheet.create({
   container: {
@@ -17,4 +25,4 @@ const GlobalStyles = StyleSheet.create({
   },
 });
 
-export { GlobalStyles };
+export { GlobalStyles, isDarkMode };
