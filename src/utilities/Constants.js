@@ -1,5 +1,7 @@
 import { Dimensions, Platform } from "react-native";
 
+const BASE_URL = "http://localhost:3000";
+
 const DIM = {
   deviceWidth: Math.round(Dimensions.get("window").width),
   deviceHeight: Math.round(Dimensions.get("window").height),
@@ -24,32 +26,18 @@ const Colors = {
   GhostWhite: "#FAFAFA",
   Zodiac_BlueOp: "#18274b14",
   Zodiac_Dark_BlueOp: "#18274bbf",
-  Martini: "#A6A7A5",
   CarbonGrey: "#636562",
-  CarbonGreyOp: "#63656226",
   Mist: "#8F918F",
-  Mercury: "#e5e5e5",
   Silver: "#C6C6C6",
-  Loafer: "#EBF5E3",
   SnakeGreen: "#77BD43",
   SnakeGreenOp: "#77BD4326",
-  Mango: "#ffb75d26",
-  Orange: "#FFB75D",
-  paleBlue: "#CCECFA",
-  paleBlue_Op: "#CCECFA4D",
   VeniceBlue: "#0E5E81",
   VeniceBlueOp: "#0E5E814D",
-  Platinum: "#E2E2E2",
   TRANSPARENT: "#0404045c",
   Gunmetal: "#292D32",
   CyanBlue: "#DFE6EE",
   PurpleJam: "#662D91",
   PurpleJamOp: "#662D914D",
-  AliceBlue: "#F0FAFE",
-  DustyOrange: "#DE9336",
-  IronsideGrey: "#6C6C6C",
-  CoralBlue: "#99D9F5",
-  DarkGrey: "#363A36",
   ButteryWhite: "#FFFBEB",
   SplashYellow: "#FFB313",
 };
@@ -80,6 +68,19 @@ const Icons = {
   world: require("../assets/Icons/world.png"),
   checked: require("../assets/Icons/checked.png"),
   unChecked: require("../assets/Icons/unchecked.png"),
+  google: require("../assets/Icons/google.png"),
+  biography: require("../assets/Icons/biography.png"),
+  business: require("../assets/Icons/business.png"),
+  communication: require("../assets/Icons/communication.png"),
+  finance: require("../assets/Icons/finance.png"),
+  // financeFriday: require("../assets/Icons/")
+  happiness: require("../assets/Icons/happiness.png"),
+  health: require("../assets/Icons/health.png"),
+  lifeLessons: require("../assets/Icons/lifeLesson.png"),
+  productivity: require("../assets/Icons/productivity.png"),
+  psychology: require("../assets/Icons/psychology.png"),
+  stories: require("../assets/Icons/story.png"),
+  students: require("../assets/Icons/students.png"),
 };
 
 const Images = {
@@ -87,4 +88,4 @@ const Images = {
   profileImage: require("../assets/Images/face.png"),
 };
 
-export { DIM, Colors, Gif, Icons, Images, iconWidth, iconHeight };
+export { DIM, Colors, Gif, Icons, Images, iconWidth, iconHeight, BASE_URL };
