@@ -51,9 +51,12 @@ const Colors = {
   CoralBlue: "#99D9F5",
   DarkGrey: "#363A36",
   ButteryWhite: "#FFFBEB",
+  SplashYellow: "#FFB313",
 };
 
-const Gif = {};
+const Gif = {
+  Splash: require("../assets/gif/Splash.gif"),
+};
 
 const Icons = {
   listen: require("../assets/Icons/listen.png"),
@@ -68,10 +71,20 @@ const Icons = {
   home: require("../assets/Icons/home.png"),
   person: require("../assets/Icons/person.png"),
   settings: require("../assets/Icons/settings.png"),
+  search: require("../assets/Icons/search.png"),
+  // english: require("../assets/Icons/english.png"),
+  // tamil: require("../assets/Icons/tamil.png"),
+  // malayalam: require("../assets/Icons/malayalam.png"),
+  // hindi: require("../assets/Icons/hindi.png"),
+  // telegu: require("../assets/Icons/telegu.png"),
+  world: require("../assets/Icons/world.png"),
+  checked: require("../assets/Icons/checked.png"),
+  unChecked: require("../assets/Icons/unchecked.png"),
 };
 
 const Images = {
   drawerBg: require("../assets/Images/Drawer-Bg.png"),
+  profileImage: require("../assets/Images/face.png"),
 };
 
 export { DIM, Colors, Gif, Icons, Images, iconWidth, iconHeight };

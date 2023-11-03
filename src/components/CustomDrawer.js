@@ -4,7 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Colors, DIM, Icons, Images } from "../utilities/Constants";
+import { Colors, DIM, Gif, Images } from "../utilities/Constants";
 
 const CustomDrawer = (props) => {
   return (
@@ -13,14 +13,15 @@ const CustomDrawer = (props) => {
         {...props}
         contentContainerStyle={{ backgroundColor: Colors.Iceberg }}
       >
-        <ImageBackground
-          source={Images.drawerBg}
+        <View
+          // source={Images.drawerBg}
           style={{
             padding: 20,
+            backgroundColor: Colors.SnakeGreenOp,
           }}
         >
           <Image
-            source={Images.drawerBg}
+            source={Images.profileImage}
             style={{
               height: 80,
               width: 80,
@@ -28,13 +29,25 @@ const CustomDrawer = (props) => {
               borderRadius: 40,
             }}
           />
-          <Text style={{ color: Colors.Black, fontSize: DIM.deviceFont * 20 }}>
-            Zeus
-          </Text>
-        </ImageBackground>
-        <View
-          style={{ flex: 1, backgroundColor: Colors.White, paddingTop: 20 }}
-        >
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Text
+              style={{
+                color: Colors.Black,
+                fontSize: DIM.deviceFont * 20,
+                marginLeft: DIM.deviceWidth * 0.02,
+              }}
+            >
+              Ganesh
+            </Text>
+          </View>
+        </View>
+        <View style={{ flex: 1, backgroundColor: Colors.Mist, paddingTop: 20 }}>
           <DrawerItemList {...props} />
         </View>
       </DrawerContentScrollView>

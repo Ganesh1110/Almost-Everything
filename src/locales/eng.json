@@ -1,4 +1,8 @@
 {
-    "change-Language":"Change Language",
-    "Login":"Login" 
+    "Choose-Language":"Choose Language",
+    "sign-in":"Sign in",
+    "signUp-With-Email":"sign Up with Email",
+    "or":"or",
+    "Already-Have-An-Account" :"Already Have An Account ?",
+    "Login-Here":"Login Here"
 }

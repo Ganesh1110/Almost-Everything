@@ -1,14 +1,52 @@
 import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Dashboard from "../screens/dashboard/Dashboard";
+import DashboardNav from "./DashboardNavigation";
+import { Image } from "react-native";
+import { Colors, Icons } from "../utilities/Constants";
+import { GlobalStyles } from "../utilities/GlobalStyles";
+import Search from "../screens/search/Search";
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => {
+          if (route.name == "Home") {
+            return (
+              <Image
+                source={Icons.home}
+                style={[
+                  GlobalStyles.iconSize,
+                  { tintColor: focused ? Colors.CuriousBlue : Colors.Silver },
+                ]}
+              />
+            );
+          } else if (route.name == "search") {
+            return (
+              <Image
+                source={Icons.search}
+                style={[
+                  GlobalStyles.iconSize,
+                  { tintColor: focused ? Colors.CuriousBlue : Colors.Silver },
+                ]}
+              />
+            );
+          }
+        },
+        tabBarActiveTintColor: Colors.CuriousBlue,
+        tabBarInactiveTintColor: Colors.Silver,
+      })}
+    >
       <Tab.Screen
         name="Home"
-        component={Dashboard}
+        component={DashboardNav}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="search"
+        component={Search}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>

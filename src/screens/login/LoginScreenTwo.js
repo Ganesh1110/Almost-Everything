@@ -6,11 +6,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
-import CustomHeader from "../../components/CustomHeader";
+import Modal from "react-native-modal";
 import { Colors, DIM, Icons } from "../../utilities/Constants";
 import { GlobalStyles, isDarkMode } from "../../utilities/GlobalStyles";
 import CustomButton from "../../components/CustomButton";
+
 const LoginScreenTwo = ({ navigation }) => {
   const [userCredential, setUserCredential] = useState({
     email: "",
@@ -26,6 +28,36 @@ const LoginScreenTwo = ({ navigation }) => {
   });
   const [buttonLoader, setButtonLoader] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("eng");
+  const [showBottomSheet, setShowBottomSheet] = useState(false);
+
+  const data = [
+    {
+      label: "English",
+      value: "eng",
+      selected: selectedLang === "eng",
+    },
+    {
+      label: "தமிழ்",
+      value: "tam",
+      selected: selectedLang === "tam",
+    },
+    {
+      label: "മലയാളം",
+      value: "mal",
+      selected: selectedLang === "mal",
+    },
+    {
+      label: "हिंदी",
+      value: "hin",
+      selected: selectedLang === "hin",
+    },
+    {
+      label: "తెలుగు",
+      value: "tel",
+      selected: selectedLang === "tel",
+    },
+  ];
 
   useEffect(() => {
     getInitialState();
@@ -100,16 +132,102 @@ const LoginScreenTwo = ({ navigation }) => {
     }
   };
 
+  const chooseLang = () => {
+    setShowBottomSheet(true);
+  };
+
+  const LangList = ({ data }) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          selectLangFunction(data);
+        }}
+      >
+        <View
+          style={{
+            borderColor: data.selected ? Colors.CuriousBlue : Colors.Iceberg,
+            backgroundColor: null,
+            borderWidth: DIM.deviceWidth * 0.004,
+            borderRadius: 10,
+            height: 50,
+            marginTop: DIM.deviceHeight * 0.02,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View
+              style={{
+                marginLeft: DIM.deviceWidth * 0.02,
+                marginRight: DIM.deviceWidth * 0.02,
+              }}
+            >
+              <Image
+                source={data.selected ? Icons.checked : Icons.unChecked}
+                style={[
+                  GlobalStyles.iconSize,
+                  {
+                    tintColor: data.selected
+                      ? Colors.CuriousBlue
+                      : Colors.Silver,
+                  },
+                ]}
+              />
+            </View>
+            <Text
+              style={{
+                fontSize: DIM.deviceFont * 18,
+                fontWeight: "700",
+                color: data.border,
+                padding: 5,
+              }}
+            >
+              {data.label}
+            </Text>
+          </View>
+          <View style={{ marginRight: DIM.deviceWidth * 0.05 }}>
+            <Image
+              source={Icons.world}
+              style={[
+                GlobalStyles.iconSize,
+                {
+                  tintColor: data.selected ? Colors.CuriousBlue : Colors.Silver,
+                  opacity: data.selected ? 1 : 0.5,
+                },
+              ]}
+            />
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const selectLangFunction = (value) => {
+    setSelectedLang(value.value); // Update the selected language
+  };
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.White }}>
-      <CustomHeader
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: Colors.White,
+      }}
+    >
+      {/* <CustomHeader
         heading={"Login"}
         leftIconName={Icons.leftArrow}
         onLeftIconPress={leftNav}
         headerBg={Colors.DustyRed_Op}
-      />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
+      /> */}
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: DIM.deviceHeight * 0.1,
+        }}
+      >
+        <View>
           <Image
             source={Icons.listen}
             style={{
@@ -119,7 +237,35 @@ const LoginScreenTwo = ({ navigation }) => {
           />
         </View>
       </View>
-      <View style={GlobalStyles.marginView}>
+      <TouchableOpacity
+        style={{
+          alignItems: "center",
+          flexDirection: "row",
+          justifyContent: "center",
+          marginTop: DIM.deviceHeight * 0.02,
+        }}
+        onPress={() => {
+          chooseLang();
+        }}
+      >
+        <Image source={Icons.world} style={GlobalStyles.iconSize} />
+        <Text
+          style={{
+            color: Colors.Charcoal,
+            fontWeight: "500",
+            fontSize: DIM.deviceFont * 14,
+            marginLeft: DIM.deviceWidth * 0.012,
+          }}
+        >
+          Choose Language
+        </Text>
+      </TouchableOpacity>
+      <View
+        style={[
+          GlobalStyles.marginView,
+          { marginTop: DIM.deviceHeight * 0.03 },
+        ]}
+      >
         <View style={{ marginTop: DIM.deviceHeight * 0.03 }}>
           <Text
             style={{
@@ -295,6 +441,36 @@ const LoginScreenTwo = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
+      <Modal
+        isVisible={showBottomSheet}
+        onBackdropPress={() => {
+          setShowBottomSheet(false);
+        }}
+        style={{ justifyContent: "flex-end", margin: 0 }}
+        animationIn={"slideInUp"}
+        animationOut={"slideOutDown"}
+        animationInTiming={900}
+        animationOutTiming={900}
+      >
+        <View
+          style={{
+            backgroundColor: Colors.White,
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+            height: 300,
+            width: DIM.deviceWidth * 1,
+            padding: 10,
+          }}
+        >
+          <View style={GlobalStyles.marginView}>
+            <FlatList
+              data={data}
+              renderItem={({ item }) => <LangList data={item} />}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
