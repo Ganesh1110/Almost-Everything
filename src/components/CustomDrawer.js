@@ -1,23 +1,22 @@
 import React from "react";
-import { View, Text, ImageBackground, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { Colors, DIM, Gif, Images } from "../utilities/Constants";
+import { Colors, DIM, Images } from "../utilities/Constants";
+import { Platform } from "react-native";
 
 const CustomDrawer = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView
         {...props}
-        contentContainerStyle={{ backgroundColor: Colors.Iceberg }}
+        contentContainerStyle={{ backgroundColor: Colors.SnakeGreen }}
       >
         <View
-          // source={Images.drawerBg}
           style={{
             padding: 20,
-            backgroundColor: Colors.SnakeGreenOp,
           }}
         >
           <Image
@@ -43,7 +42,7 @@ const CustomDrawer = (props) => {
                 marginLeft: DIM.deviceWidth * 0.02,
               }}
             >
-              Ganesh
+              Test User
             </Text>
           </View>
         </View>

@@ -81,6 +81,9 @@ const Icons = {
   psychology: require("../assets/Icons/psychology.png"),
   stories: require("../assets/Icons/story.png"),
   students: require("../assets/Icons/students.png"),
+  books: require("../assets/Icons/book.png"),
+  lock: require("../assets/Icons/lock.png"),
+  library: require("../assets/Icons/library.png"),
 };
 
 const Images = {

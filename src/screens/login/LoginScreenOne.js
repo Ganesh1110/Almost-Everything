@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -10,12 +10,10 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { GoogleSigninButton } from "@react-native-google-signin/google-signin";
-import { useTranslation } from "react-i18next";
 import { Colors, DIM, Icons } from "../../utilities/Constants";
 import { GlobalStyles } from "../../utilities/GlobalStyles";
 
 const LoginScreenOne = ({ navigation }) => {
-  const { t } = useTranslation();
   const [selectedLang, setSelectedLang] = useState("eng");
   const [showBottomSheet, setShowBottomSheet] = useState(false);
 
@@ -164,7 +162,7 @@ const LoginScreenOne = ({ navigation }) => {
               marginLeft: DIM.deviceWidth * 0.012,
             }}
           >
-            {t("Choose-Language")}
+            Choose Language
           </Text>
         </TouchableOpacity>
         <>
@@ -217,7 +215,7 @@ const LoginScreenOne = ({ navigation }) => {
               fontWeight: "bold",
             }}
           >
-            Sign Up with Email
+            SignUp With Email
           </Text>
         </TouchableOpacity>
         <Text
